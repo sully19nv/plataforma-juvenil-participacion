@@ -4,7 +4,25 @@ Este repositorio será utilizado para construir progresivamente un proyecto peda
 
 ## Advertencia
 
-Este proyecto es únicamente académico.
+Nombre del estudiante:
+
+Nombre de la plataforma:
+plataforma juvenil de participacion.
+
+Proposito:
+aprender como la tecnologia puede apoyar ejercicios pedagogicos de participacion juvenil, transpariencia y trazabilidad.
+
+#REGLAS DE CUIDADO
+-No usar datos reales
+-No usar  cedula
+-No usar informacion sensible
+-No usar nombres de candidatos reales
+-No presentar resultados como oficiales
+##importancia de Git
+Git permite registrar los cambios del proyecto y revisar que se modifico em cada momento
+
+
+Este proyecto es unicamente academico.
 
 No corresponde a una elección real.
 No debe recolectar datos personales reales.

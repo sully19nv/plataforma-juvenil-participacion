@@ -1,0 +1,98 @@
+/* styles.css
+   Este archivo contiene el estilo de la página.
+   Está separado para que HTML y CSS estén organizados.
+*/
+
+/* Variables de color para cambiar el diseño fácilmente */
+:root {
+    --fondo: #f4f6fb;
+    --tarjeta: #ffffff;
+    --texto: #1f2937;
+    --texto-secundario: #475569;
+    --borde: #e2e8f0;
+    --alerta-fondo: #fef3c7;
+    --alerta-borde: #fde68a;
+}
+
+/* Aplica el mismo modelo de caja a todos los elementos */
+* {
+    box-sizing: border-box;
+}
+
+/* Cuerpo de la página */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(180deg, var(--fondo), #ffffff);
+    color: var(--texto);
+}
+
+/* Contenedor central con margen automático */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px;
+}
+
+/* Caja blanca con sombra suave para que parezca profesional */
+.card {
+    background: var(--tarjeta);
+    border: 1px solid var(--borde);
+    border-radius: 24px;
+    box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+    padding: 32px;
+}
+
+/* Título principal grande */
+h1 {
+    margin: 0 0 12px;
+    font-size: 2.5rem;
+    line-height: 1.1;
+}
+
+/* Texto general con espacio entre párrafos */
+p {
+    margin: 0 0 18px;
+    color: var(--texto-secundario);
+    line-height: 1.75;
+    font-size: 1rem;
+}
+
+/* Subtítulos con línea inferior */
+h2 {
+    margin: 36px 0 14px;
+    font-size: 1.25rem;
+    color: var(--texto);
+    border-bottom: 2px solid var(--borde);
+    padding-bottom: 10px;
+}
+
+/* Estilo de advertencia para destacarla */
+.alert {
+    background: var(--alerta-fondo);
+    border: 1px solid var(--alerta-borde);
+    border-radius: 16px;
+    padding: 20px;
+    color: #92400e;
+    margin-bottom: 24px;
+}
+
+/* Pie de página sencillo */
+footer {
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid var(--borde);
+    color: var(--texto-secundario);
+    font-size: 0.95rem;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 640px) {
+    .container {
+        padding: 24px 16px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+}
