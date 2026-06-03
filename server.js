@@ -71,6 +71,10 @@ if (yaVoto) {
 mensaje: "Esta identificacion ya registro un voto pedagogico"
      });
 }
+
+
+
+
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });

@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "nombre": "Ana Pérez",
+    "rol": "Líder comunitaria",
+    "propuesta": "Mejorar la transparencia en proyectos locales",
+    "estado": "activo"
+  },
+  {
+    "id": 2,
+    "nombre": "Carlos Gómez",
+    "rol": "Estudiante",
+    "propuesta": "Fomentar la participación juvenil",
+    "estado": "activo"
+  },
+  {
+    "id": 3,
+    "nombre": "Laura Martínez",
+    "rol": "Emprendedora",
+    "propuesta": "Impulsar proyectos de energía limpia",
+    "estado": "inactivo"
+  }
+]
