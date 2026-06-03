@@ -3,89 +3,60 @@ const fs = require("fs");
 const path = require("path");
 
 const app = express();
-const PORT = 3000;app.use(express.json());
+const PORT = 3000;
 
 app.use(express.json());
-app.use(express.static(__dirname));
 
+// SERVIR ARCHIVOS FRONTEND (HTML, CSS, JS)
+app.use(express.static(path.join(__dirname, "public")));
 
-// Permite leer JSON en POST
-app.use(express.json());
-
-/* =========================
-   RUTAS DE ARCHIVOS
-========================= */
-
+// ARCHIVOS JSON
 const rutaCandidatos = path.join(__dirname, "data", "candidatos.json");
 const rutaVotos = path.join(__dirname, "data", "votos.json");
 
-/* =========================
-   FUNCIONES CANDIDATOS
-========================= */
-
+// LEER/ESCRIBIR CANDIDATOS
 function leerCandidatos() {
-  const data = fs.readFileSync(rutaCandidatos, "utf8");
-  return JSON.parse(data);
+  return JSON.parse(fs.readFileSync(rutaCandidatos, "utf8"));
 }
 
-function guardarCandidatos(candidatos) {
-  fs.writeFileSync(rutaCandidatos, JSON.stringify(candidatos, null, 2));
-}
-
-/* =========================
-   FUNCIONES VOTOS
-========================= */
-
+// LEER/ESCRIBIR VOTOS
 function leerVotos() {
-  const data = fs.readFileSync(rutaVotos, "utf8");
-  return JSON.parse(data);
+  return JSON.parse(fs.readFileSync(rutaVotos, "utf8"));
 }
 
 function guardarVotos(votos) {
   fs.writeFileSync(rutaVotos, JSON.stringify(votos, null, 2));
 }
 
-/* =========================
-   RUTAS API
-========================= */
+/* ======================
+   API
+====================== */
 
-// Servidor activo
-app.get("/", (req, res) => {
-  res.send("Servidor funcionando 🚀");
-});
-
-// =========================
-// CANDIDATOS
-// =========================
-
+// OBLIGATORIO para tu HTML
 app.get("/api/candidatos", (req, res) => {
-  const candidatos = leerCandidatos();
-  res.json(candidatos);
+  try {
+    const data = leerCandidatos();
+    res.json(data);
+  } catch (error) {
+    res.json([]);
+  }
 });
-
-// =========================
-// VOTOS
-// =========================
 
 app.get("/api/votos", (req, res) => {
-  const votos = leerVotos();
-  res.json(votos);
+  try {
+    const data = leerVotos();
+    res.json(data);
+  } catch (error) {
+    res.json([]);
+  }
 });
 
 app.post("/api/votos", (req, res) => {
   const { identificacion, candidato } = req.body;
 
-  if (!identificacion || !candidato) {
-    return res.status(400).json({
-      mensaje: "Faltan datos (identificación o candidato)"
-    });
-  }
-
   const votos = leerVotos();
 
-  const yaVoto = votos.find(
-    (v) => v.identificacion === identificacion
-  );
+  const yaVoto = votos.find(v => v.identificacion === identificacion);
 
   if (yaVoto) {
     return res.status(400).json({
@@ -93,23 +64,22 @@ app.post("/api/votos", (req, res) => {
     });
   }
 
-  votos.push({
+  const nuevoVoto = {
     identificacion,
     candidato,
-    fecha: new Date().toLocaleString()
-  });
+    fecha: new Date().toISOString()
+  };
 
+  votos.push(nuevoVoto);
   guardarVotos(votos);
 
-  res.json({
-    mensaje: "Voto registrado correctamente"
-  });
+  res.json({ mensaje: "Voto registrado correctamente" });
 });
 
-/* =========================
+/* ======================
    INICIAR SERVIDOR
-========================= */
+====================== */
 
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Servidor corriendo en puerto ${PORT}`);
 });
