@@ -1,8 +1,8 @@
 # Bitácora Clase 26
 
-Nombre del estudiante: Sulley Cano
-Fecha: 02/06/2026
-Rama: clase-26-inicio-proyecto
+Nombre del estudiante:
+Fecha:
+Rama:
 
 ## Actividades realizadas
 
