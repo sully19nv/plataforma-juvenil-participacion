@@ -1,23 +1,20 @@
 [
   {
-    "id": 1,
-    "nombre": "Ana Pérez",
-    "rol": "Líder comunitaria",
-    "propuesta": "Mejorar la transparencia en proyectos locales",
-    "estado": "activo"
+    "nombre": "Transparencia Juvenil",
+    "rol": "Candidato pedagógico",
+    "propuesta": "Promover la transparencia, participación juvenil y trazabilidad en procesos comunitarios.",
+    "estado": "Activo"
   },
   {
-    "id": 2,
-    "nombre": "Carlos Gómez",
-    "rol": "Estudiante",
-    "propuesta": "Fomentar la participación juvenil",
-    "estado": "activo"
+    "nombre": "Comunidad Digital",
+    "rol": "Candidato pedagógico",
+    "propuesta": "Impulsar el uso responsable de herramientas digitales en la comunidad.",
+    "estado": "Activo"
   },
   {
-    "id": 3,
-    "nombre": "Laura Martínez",
-    "rol": "Emprendedora",
-    "propuesta": "Impulsar proyectos de energía limpia",
-    "estado": "inactivo"
+    "nombre": "Derechos y Participación",
+    "rol": "Candidato pedagógico",
+    "propuesta": "Defender el cuidado de datos, derechos y participación informada.",
+    "estado": "Activo"
   }
 ]

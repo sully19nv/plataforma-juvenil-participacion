@@ -6,53 +6,49 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+app.use(express.static(__dirname)); // IMPORTANTE para abrir HTML
 
-// SERVIR ARCHIVOS FRONTEND (HTML, CSS, JS)
-app.use(express.static(path.join(__dirname, "public")));
-
-// ARCHIVOS JSON
+// ===== RUTAS DE ARCHIVOS =====
 const rutaCandidatos = path.join(__dirname, "data", "candidatos.json");
 const rutaVotos = path.join(__dirname, "data", "votos.json");
 
-// LEER/ESCRIBIR CANDIDATOS
+// ===== CANDIDATOS =====
 function leerCandidatos() {
-  return JSON.parse(fs.readFileSync(rutaCandidatos, "utf8"));
+  const data = fs.readFileSync(rutaCandidatos, "utf8");
+  return JSON.parse(data);
 }
 
-// LEER/ESCRIBIR VOTOS
+// 🔥 ESTA ES LA RUTA QUE TE FALTA
+app.get("/api/candidatos", (req, res) => {
+  const candidatos = leerCandidatos();
+  res.json(candidatos);
+});
+
+// ===== VOTOS =====
 function leerVotos() {
-  return JSON.parse(fs.readFileSync(rutaVotos, "utf8"));
+  const data = fs.readFileSync(rutaVotos, "utf8");
+  return JSON.parse(data);
 }
 
 function guardarVotos(votos) {
   fs.writeFileSync(rutaVotos, JSON.stringify(votos, null, 2));
 }
 
-/* ======================
-   API
-====================== */
-
-// OBLIGATORIO para tu HTML
-app.get("/api/candidatos", (req, res) => {
-  try {
-    const data = leerCandidatos();
-    res.json(data);
-  } catch (error) {
-    res.json([]);
-  }
-});
-
+// GET votos
 app.get("/api/votos", (req, res) => {
-  try {
-    const data = leerVotos();
-    res.json(data);
-  } catch (error) {
-    res.json([]);
-  }
+  const votos = leerVotos();
+  res.json(votos);
 });
 
+// POST votos
 app.post("/api/votos", (req, res) => {
   const { identificacion, candidato } = req.body;
+
+  if (!identificacion || !candidato) {
+    return res.status(400).json({
+      mensaje: "Faltan datos"
+    });
+  }
 
   const votos = leerVotos();
 
@@ -60,11 +56,12 @@ app.post("/api/votos", (req, res) => {
 
   if (yaVoto) {
     return res.status(400).json({
-      mensaje: "Esta identificación ya registró un voto pedagógico"
+      mensaje: "Esta identificación ya votó"
     });
   }
 
   const nuevoVoto = {
+    id: Date.now(),
     identificacion,
     candidato,
     fecha: new Date().toISOString()
@@ -73,13 +70,19 @@ app.post("/api/votos", (req, res) => {
   votos.push(nuevoVoto);
   guardarVotos(votos);
 
-  res.json({ mensaje: "Voto registrado correctamente" });
+  res.status(201).json({
+    mensaje: "Voto registrado correctamente",
+    voto: nuevoVoto
+  });
+});app.get("/api/candidatos", (req, res) => {
+  res.json([
+    { nombre: "Prueba", rol: "test" }
+  ]);
 });
 
-/* ======================
-   INICIAR SERVIDOR
-====================== */
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Servidor corriendo en puerto ${PORT}`);
+
+// ===== INICIO SERVIDOR =====
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
