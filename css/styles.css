@@ -2,7 +2,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 20px;
-  background-color: #aebdc5;
+  background-color: #ec9aa1;
 }
 
 header {
@@ -11,7 +11,7 @@ header {
 }
 
 .seccion-candidatos {
-  background-color: rgb(160, 162, 187);
+  background-color: rgb(150, 82, 102);
   padding: 25px;
   border-radius: 12px;
   margin-top: 25px;
@@ -26,20 +26,20 @@ header {
 
 .tarjeta-candidato {
   border: 1px solid #050505;
-  border-left: 5px solid #3b3469;
+  border-left: 5px solid #de91a7;
   border-radius: 10px;
   padding: 18px;
-  background-color: #706d9f;
+  background-color: #920731;
 }
 
 .tarjeta-candidato h3 {
-  color: #3a3854;
+  color: #bc6069;
   margin-top: 0;
 }
 
 .tarjeta-candidato button {
   margin-top: 10px;
-  background-color: #344260;
+  background-color: #e6626f;
   color: rgb(4, 8, 8);
   border: none;
   padding: 10px 14px;
@@ -48,13 +48,13 @@ header {
 }
 
 .tarjeta-candidato button:hover {
-  background-color: #0b70c9;
+  background-color: #a25d62;
 }
 
 .detalle-perfil {
   margin-top: 20px;
   padding: 15px;
-  background-color: #000506;
-  border-left: 5px solid #231965;
+  background-color: #ae7070;
+  border-left: 5px solid #651923;
   border-radius: 8px;
 }
