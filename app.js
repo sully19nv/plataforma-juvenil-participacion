@@ -4,12 +4,10 @@ const mensajeClase = document.getElementById('mensajeClase')
 let contadorDeClicks = 0
 
 btnMensaje.addEventListener('click', () => {
-
-```
-contadorDeClicks = contadorDeClicks + 1
+contadorDeClicks++
 
 mensajeClase.textContent =
 `El texto que quisimos mostrar. Número de clics: ${contadorDeClicks}`
-```
+
 
 })
