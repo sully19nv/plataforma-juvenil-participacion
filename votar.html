@@ -59,106 +59,101 @@
       <a href="index.html">Volver a perfiles</a>
     </section>
   </main>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
 
-  <script>
-    const btnVotar = document.getElementById("btnVotar");
-    const mensajeVoto = document.getElementById("mensajeVoto");
-    const btnCargarVotos = document.getElementById("btnCargarVotos");
-    const contenedorVotos = document.getElementById("contenedorVotos");
-    const candidatoSeleccionado = document.getElementById("candidatoSeleccionado");
-    const contenedorCandidatosDisponibles = document.getElementById("contenedorCandidatosDisponibles");
+  const btnVotar = document.getElementById("btnVotar");
+  const mensajeVoto = document.getElementById("mensajeVoto");
+  const btnCargarVotos = document.getElementById("btnCargarVotos");
+  const contenedorVotos = document.getElementById("contenedorVotos");
+  const candidatoSeleccionado = document.getElementById("candidatoSeleccionado");
+  const contenedorCandidatosDisponibles = document.getElementById("contenedorCandidatosDisponibles");
 
-    async function cargarCandidatos() {
+  async function cargarCandidatos() {
+    try {
       const respuesta = await fetch("/api/candidatos");
       const candidatos = await respuesta.json();
 
       candidatoSeleccionado.innerHTML = '<option value="">Selecciona un candidato</option>';
       contenedorCandidatosDisponibles.innerHTML = "";
 
-      if (candidatos.length === 0) {
-        candidatoSeleccionado.innerHTML = '<option value="">No hay candidatos registrados</option>';
-        contenedorCandidatosDisponibles.innerHTML = "<p>No hay candidatos registrados todavía.</p>";
-        return;
-      }
-
-      candidatos.forEach(function (candidato) {
+      candidatos.forEach(candidato => {
         const opcion = document.createElement("option");
         opcion.value = candidato.nombre;
         opcion.textContent = candidato.nombre;
         candidatoSeleccionado.appendChild(opcion);
 
-        const tarjeta = document.createElement("div");
-        tarjeta.classList.add("tarjeta-guardada");
-
-        tarjeta.innerHTML = `
-          <h3>${candidato.nombre}</h3>
-          <p><strong>Rol:</strong> ${candidato.rol}</p>
-          <p><strong>Propuesta:</strong> ${candidato.propuesta}</p>
-          <p><strong>Estado:</strong> ${candidato.estado}</p>
+        contenedorCandidatosDisponibles.innerHTML += `
+          <div class="tarjeta-guardada">
+            <h3>${candidato.nombre}</h3>
+            <p><strong>Rol:</strong> ${candidato.rol}</p>
+            <p><strong>Propuesta:</strong> ${candidato.propuesta}</p>
+            <p><strong>Estado:</strong> ${candidato.estado}</p>
+          </div>
         `;
-
-        contenedorCandidatosDisponibles.appendChild(tarjeta);
       });
+
+    } catch (error) {
+      console.error("Error cargando candidatos:", error);
+      contenedorCandidatosDisponibles.innerHTML = "<p>Error cargando candidatos</p>";
+    }
+  }
+
+  btnVotar.addEventListener("click", async () => {
+    const identificacion = document.getElementById("identificacionVotante").value.trim();
+    const candidato = candidatoSeleccionado.value;
+
+    if (!identificacion || !candidato) {
+      mensajeVoto.textContent = "Completa todos los campos";
+      return;
     }
 
-    btnVotar.addEventListener("click", async function () {
-      const identificacion = document.getElementById("identificacionVotante").value.trim();
-      const candidato = candidatoSeleccionado.value;
-
-      if (!identificacion || !candidato) {
-        mensajeVoto.textContent = "Completa identificación ficticia y selecciona un candidato.";
-        return;
-      }
-
+    try {
       const respuesta = await fetch("/api/votos", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          identificacion: identificacion,
-          candidato: candidato
-        })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ identificacion, candidato })
       });
 
-      const resultado = await respuesta.json();
-      mensajeVoto.textContent = resultado.mensaje;
+      const data = await respuesta.json();
+      mensajeVoto.textContent = data.mensaje;
 
-      if (respuesta.ok) {
-        document.getElementById("identificacionVotante").value = "";
-        candidatoSeleccionado.value = "";
-      }
-    });
+    } catch (error) {
+      console.error(error);
+      mensajeVoto.textContent = "Error enviando voto";
+    }
+  });
 
-    async function cargarVotos() {
+  async function cargarVotos() {
+    try {
       const respuesta = await fetch("/api/votos");
       const votos = await respuesta.json();
 
       contenedorVotos.innerHTML = "";
 
-      if (votos.length === 0) {
-        contenedorVotos.innerHTML = "<p>No hay votos registrados todavía.</p>";
-        return;
-      }
-
-      votos.forEach(function (voto) {
-        const div = document.createElement("div");
-        div.classList.add("tarjeta-guardada");
-
-        div.innerHTML = `
-          <p><strong>Identificación:</strong> ${voto.identificacion}</p>
-          <p><strong>Candidato:</strong> ${voto.candidato}</p>
-          <p><strong>Fecha:</strong> ${voto.fecha}</p>
+      votos.forEach(voto => {
+        contenedorVotos.innerHTML += `
+          <div class="tarjeta-guardada">
+            <p><strong>ID:</strong> ${voto.identificacion}</p>
+            <p><strong>Candidato:</strong> ${voto.candidato}</p>
+            <p><strong>Fecha:</strong> ${voto.fecha}</p>
+          </div>
         `;
-
-        contenedorVotos.appendChild(div);
       });
+
+    } catch (error) {
+      console.error("Error cargando votos:", error);
     }
+  }
 
-    btnCargarVotos.addEventListener("click", cargarVotos);
+  btnCargarVotos.addEventListener("click", cargarVotos);
 
-    cargarCandidatos();
-  </script>
+  cargarCandidatos();
+
+});
+</script>
+  
+    
 
 </body>
 </html>
