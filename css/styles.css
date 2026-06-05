@@ -55,7 +55,29 @@ header {
 .detalle-perfil {
   margin-top: 20px;
   padding: 15px;
-  background-color: #ae7070;
+  backmain label {
+  display: block;
+  margin-top: 12px;
+  font-weight: bold;
+  color: #8A1538;
+}
+
+main input,
+main textarea,
+main select {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 6px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+#mensajeAlerta {
+  margin-top: 12px;
+  font-weight: bold;
+  color: #8A1538;
+}ground-color: #ae7070;
   border-left: 5px solid #651923;
   border-radius: 8px;
 }
