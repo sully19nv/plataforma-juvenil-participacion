@@ -1,6 +1,10 @@
 # Variables de entorno y secretos
 .env
-*.env
+*.envcredentials.json
+google-credentials.json
+service-account.json
+*.credentials.json
+
 
 # Dependencias
 node_modules/
