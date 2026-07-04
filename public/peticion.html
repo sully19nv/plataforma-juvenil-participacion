@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generador de Derecho de Petición</title>
+
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+
+<main>
+
+<h1>Generador de Derecho de Petición</h1>
+
+<p>
+Este formulario genera un borrador editable de apoyo pedagógico.
+Debe revisarse antes de presentarse ante cualquier autoridad.
+</p>
+
+<p>
+Durante la práctica utiliza únicamente datos simulados.
+</p>
+
+<section>
+
+<h2>Datos básicos</h2>
+
+<form id="formPeticion">
+
+<label>Ciudad</label>
+<input
+type="text"
+id="ciudad"
+placeholder="Ejemplo: Bogotá D.C."
+required>
+
+<label>Entidad destinataria</label>
+<input
+type="text"
+id="entidad"
+placeholder="Ejemplo: Secretaría de..."
+required>
+
+<label>Nombre del solicitante</label>
+<input
+type="text"
+id="nombre"
+placeholder="Nombre de práctica"
+required>
+
+<label>Tipo de documento</label>
+
+<select id="tipoDocumento">
+
+<option value="">Seleccione</option>
+
+<option>CC</option>
+
+<option>TI</option>
+
+<option>CE</option>
+
+<option>PAS</option>
+
+<option>PRACTICA</option>
+
+</select>
+
+<label>Número de documento</label>
+
+<input
+type="text"
+id="documento"
+placeholder="0000000000"
+required>
+
+<label>Correo</label>
+
+<input
+type="email"
+id="correo"
+placeholder="correo@ejemplo.com"
+required>
+
+<label>Tipo de petición</label>
+
+<select id="tipoPeticion">
+
+<option value="">Seleccione</option>
+
+<option>Solicitud de información pública</option>
+
+<option>Solicitud de copias</option>
+
+<option>Estado del trámite</option>
+
+<option>Orientación institucional</option>
+
+</select>
+
+<label>Asunto</label>
+
+<input
+type="text"
+id="asunto"
+required>
+
+<label>Hechos</label>
+
+<textarea
+id="hechos"
+rows="6"
+required></textarea>
+
+<label>Solicitud</label>
+
+<textarea
+id="solicitud"
+rows="6"
+required></textarea>
+
+<label>Anexos</label>
+
+<textarea
+id="anexos"
+rows="3"></textarea>
+
+<label>
+
+<input
+type="checkbox"
+required>
+
+Entiendo que este documento es únicamente un borrador.
+
+</label>
+
+<button type="submit">
+
+Generar borrador
+
+</button>
+
+</form>
+
+</section>
+
+<section>
+
+<h2>Vista previa</h2>
+
+<pre id="vistaPrevia">
+
+Aquí aparecerá el borrador en la siguiente clase.
+
+</pre>
+
+</section>
+
+</main>
+
+</body>
+</html>
