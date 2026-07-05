@@ -4,6 +4,7 @@ const express = require("express");
 const path = require("path");
 const peticionesRoutes = require("./src/routes/peticiones.routes");
 
+const authRoutes = require("./src/routes/auth.routes");
 const app = express();
 
 const PORT = process.env.PORT || 3000;
@@ -12,7 +13,9 @@ const APP_NAME =
 const APP_ENV = process.env.APP_ENV || "development";
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));app.use("/api/peticiones", peticionesRoutes);
+app.use(express.urlencoded({ extended: true }));
+app.use("/api/peticiones", peticionesRoutes);
+app.use("/api/auth", authRoutes);
 app.use(express.static(path.join(__dirname, "public")));
 
 
