@@ -3,8 +3,9 @@ require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const peticionesRoutes = require("./src/routes/peticiones.routes");
-
 const authRoutes = require("./src/routes/auth.routes");
+const dashboardRoutes = require("./src/routes/dashboard.routes");
+
 const app = express();
 
 const PORT = process.env.PORT || 3000;
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/peticiones", peticionesRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 app.use(express.static(path.join(__dirname, "public")));
 
 
