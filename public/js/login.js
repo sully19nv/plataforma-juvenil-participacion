@@ -37,7 +37,9 @@ async function iniciarSesion(event) {
       <p>Rol: ${data.usuario.rol}</p>
       <p>Token de práctica guardado en el navegador.</p>
       <p><a href="/zona-protegida.html">Ir a zona protegida</a></p>
-    `;
+      <p><a href="/dashboard.html">Ir al dashboard</a></p>
+`;
+
   } catch (error) {
     resultado.textContent = "Error al conectar con el servidor.";
     console.error(error);

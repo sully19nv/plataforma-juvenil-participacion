@@ -29,6 +29,7 @@ app.get("/", (req, res) => {
     <ul>
       <li><a href="/estado">Ver estado</a></li>
       <li><a href="/peticion.html">Formulario de petición - Próxima clase</a></li>
+       <li><a href="/login.html">Formulario de inicio de sesion</a></li>
     </ul>
   `);
 });
